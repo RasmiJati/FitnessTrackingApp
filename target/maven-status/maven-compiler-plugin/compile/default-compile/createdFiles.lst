@@ -1,3 +1,4 @@
-com/rasmijati/model/User.class
+com/rasmijati/controller/UserController.class
 com/rasmijati/model/Gender.class
 com/rasmijati/controller/MainController.class
+com/rasmijati/model/User.class
