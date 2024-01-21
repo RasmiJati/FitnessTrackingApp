@@ -5,41 +5,14 @@
 package com.rasmijati.repository;
 
 import com.rasmijati.model.UserHealthProfile;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author rasmi
  */
-public class UserHealthProfileRepository {
+public class UserHealthProfileRepository extends AbstractRepository<UserHealthProfile>{
     
-    private List<UserHealthProfile> list;
-
-    public UserHealthProfileRepository() {
-        list = new ArrayList();
-    }
-    
-    public void Create(UserHealthProfile user){
-        this.list.add(user);
-    }
-    
-    public List<UserHealthProfile> Show(){
-        return list;
-    }
-    
-    public UserHealthProfile ShowById(Long id){
-        for(UserHealthProfile u : list){
-            if(u.getId().equals(id))
-                return u;
-        }
-        return null;
-    }
-    
-    public void Delete(UserHealthProfile user){
-        this.list.remove(user);
-    }
-    
+    @Override
     public void Edit(UserHealthProfile user){
         this.Show().stream().filter(n->n.getId().equals(user.getId())).forEach((UserHealthProfile x) -> {
             x.setUser(user.getUser());

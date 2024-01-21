@@ -143,7 +143,7 @@ public class UserController {
         System.out.println("Enter password : ");
         password = sc.next();
 
-        System.out.println("Enter Birth Dare : ");
+        System.out.println("Enter Birth Date : ");
         String date = sc.next();
         dob = Date.valueOf(date);
 
