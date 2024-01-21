@@ -20,7 +20,7 @@ public class UserController {
     public void Options(UserRepository userRepository) {
         this.userRepository = userRepository;
         Create();
-        
+        Show();
     }
 
     public static void Create(){
@@ -56,5 +56,11 @@ public class UserController {
         User user = new User(id, name, email, password, dob, gender);
         userRepository.Create(user);
         System.out.println(userRepository.Show());
+    }
+    
+    public static void Show(){
+        System.out.println("-----------User's Information ----------");
+        userRepository.Show().stream().forEach(x-> System.out.println(x));
+        System.out.println();
     }
 }
