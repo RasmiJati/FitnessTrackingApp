@@ -1,4 +1,4 @@
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/User.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/UserController.java
-/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/Gender.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/UserRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/MainController.java

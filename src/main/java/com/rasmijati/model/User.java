@@ -17,12 +17,12 @@ public class User {
     private String password;
     private String email;
     private Date birthdate;
-    private Gender gender;
+    private String gender;
 
     public User() {
     }
 
-    public User(Long id, String name, String password, String email, Date birthdate, Gender gender) {
+    public User(Long id, String name, String password, String email, Date birthdate, String gender) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -51,7 +51,7 @@ public class User {
         return birthdate;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -75,7 +75,7 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

@@ -3,9 +3,7 @@
  */
 package com.rasmijati.controller;
 
-import com.rasmijati.model.Gender;
-import com.rasmijati.model.User;
-import java.sql.Date;
+import com.rasmijati.repository.UserRepository;
 
 /**
  *
@@ -15,8 +13,7 @@ public class MainController {
 
     public static void main(String[] args) {
         UserController userController = new UserController();
-        User u = new User(1L, "rasmi", "rasmi", "rasmi@gmail.com", Date.valueOf("2055-04-05"), Gender.FEMALE);
-        userController.createUser(u);
-        userController.showUser();
+        UserRepository userRepository = new UserRepository();
+        userController.Options(userRepository);
     }
 }
