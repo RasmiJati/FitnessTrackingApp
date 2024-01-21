@@ -21,6 +21,8 @@ public class UserController {
         this.userRepository = userRepository;
         Create();
         Show();
+        Edit();
+        Show();
         Delete();
         Show();
     }
@@ -78,6 +80,44 @@ public class UserController {
             return;
         }
         userRepository.Delete(user);
-        System.out.println(" Delete operation for id "+ id + " is successfull!!");
+        System.out.println(" Delete operation for id " + id + " is successfull!!");
+    }
+
+    public static void Edit() {
+        Long id = null;
+        String name = null;
+        String email = null;
+        String password = null;
+        Date dob = null;
+        String gender = null;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("----------Performing Edit Operation--------------");
+        System.out.println("Enter id : ");
+        id = sc.nextLong();
+        User user = userRepository.ShowById(id);
+        if (user == null) {
+            System.out.println(id + " is inavlid id !!");
+            System.out.println("Edit operation for id " + id + " is failed !!!");
+            return;
+        }
+        System.out.println("Enter name : ");
+        name = sc.next();
+        
+        System.out.println("Enter email : ");
+        email = sc.next();
+        
+        System.out.println("Enter password : ");
+        password = sc.next();
+        
+        System.out.println("Enter Birth Dare : ");
+        String date = sc.next();
+        dob = Date.valueOf(date);
+        
+        System.out.println("Enter gender : ");
+        gender = sc.next();
+        
+        User u = new User(id, name, password, email, dob, gender);
+        userRepository.Edit(u);
+        System.out.println("Edit operation for id " + id + " is successfull!!");
     }
 }

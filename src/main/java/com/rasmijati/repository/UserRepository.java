@@ -39,4 +39,14 @@ public class UserRepository {
     public void Delete(User user){
         this.list.remove(user);
     }
+    
+    public void Edit(User user){
+        this.Show().stream().filter(n -> n.getId().equals(user.getId())).forEach((User u) -> {
+            u.setName(user.getName());
+            u.setEmail(user.getEmail());
+            u.setPassword(user.getPassword());
+            u.setBirthdate(user.getBirthdate());
+            u.setGender(user.getGender());
+        });
+    }
 }
