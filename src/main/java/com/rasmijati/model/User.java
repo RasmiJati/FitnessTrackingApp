@@ -10,7 +10,7 @@ import java.sql.Date;
  *
  * @author rasmi
  */
-public class User {
+public class User implements IEntity{
 
     private Long id;
     private String name;
@@ -31,6 +31,7 @@ public class User {
         this.gender = gender;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -55,6 +56,7 @@ public class User {
         return gender;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

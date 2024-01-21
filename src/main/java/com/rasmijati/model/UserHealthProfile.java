@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  *
  * @author rasmi
  */
-public class UserHealthProfile {
+public class UserHealthProfile implements IEntity{
 
     private Long id;
     private User user;
@@ -33,10 +33,12 @@ public class UserHealthProfile {
         this.heartrate = heartrate;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
