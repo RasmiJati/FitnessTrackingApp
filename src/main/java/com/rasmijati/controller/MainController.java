@@ -21,8 +21,15 @@ public class MainController {
         String choice;
         Scanner sc = new Scanner(System.in);
         do {
+            System.out.println();
+            System.out.println();
+            System.out.println("############## Select an Operation #############");
+            System.out.println();
             System.out.println("Enter 1 for User : ");
             System.out.println("Enter 2 for User Health Profile : ");
+            System.out.println("Enter 3 for exit : ");
+            System.out.println();
+            System.out.println();
             System.out.println("Enter your choice : ");
             choice = sc.next();
             switch (choice) {
@@ -32,10 +39,12 @@ public class MainController {
                 case "2":
                     userHealthProfileController.Options(userHealthProfileRepository, userRepository);
                     break;
+                case "3":
+                    return;
                 default:
                     System.out.println("Invalid Option!!");
                     break;
             }
-        }while(!choice.equals(0));
+        } while (!choice.equals(0));
     }
 }

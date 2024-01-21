@@ -109,7 +109,7 @@ public class UserController {
         Long id = sc.nextLong();
         User user = userRepository.ShowById(id);
         if (user == null) {
-            System.out.println(id + " is inavlid id !!");
+            System.out.println(id + " is invalid id !!");
             System.out.println("Delete operation for id " + id + " is failed !!!");
             return;
         }
@@ -130,7 +130,7 @@ public class UserController {
         id = sc.nextLong();
         User user = userRepository.ShowById(id);
         if (user == null) {
-            System.out.println(id + " is inavlid id !!");
+            System.out.println(id + " is invalid id !!");
             System.out.println("Edit operation for id " + id + " is failed !!!");
             return;
         }
