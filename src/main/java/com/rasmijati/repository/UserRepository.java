@@ -26,4 +26,17 @@ public class UserRepository {
     public List<User> Show(){
         return list;
     }
+    
+    public User ShowById(Long id){
+        for( User user : list){
+            if(user.getId().equals(id)){
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public void Delete(User user){
+        this.list.remove(user);
+    }
 }

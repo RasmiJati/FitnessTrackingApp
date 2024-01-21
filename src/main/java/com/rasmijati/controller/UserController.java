@@ -21,46 +21,63 @@ public class UserController {
         this.userRepository = userRepository;
         Create();
         Show();
+        Delete();
+        Show();
     }
 
-    public static void Create(){
+    public static void Create() {
         Long id;
         String name;
         String password;
         String email;
         Date dob;
         String gender;
-        
+
         Scanner sc = new Scanner(System.in);
-        
+
         System.out.println("Enter id:");
         String id1 = sc.next();
         id = Long.parseLong(id1);
-        
+
         System.out.println("Enter name: ");
         name = sc.next();
-        
+
         System.out.println("Enter email : ");
         email = sc.next();
-        
+
         System.out.println("Enter password : ");
         password = sc.next();
-        
+
         System.out.println("Enter Birth Date : ");
         String date = sc.next();
         dob = Date.valueOf(date);
-        
+
         System.out.println("Enter gender :");
         gender = sc.next();
-        
+
         User user = new User(id, name, email, password, dob, gender);
         userRepository.Create(user);
         System.out.println(userRepository.Show());
     }
-    
-    public static void Show(){
-        System.out.println("-----------User's Information ----------");
-        userRepository.Show().stream().forEach(x-> System.out.println(x));
+
+    public static void Show() {
+        System.out.println("**********User's Information***********");
+        userRepository.Show().stream().forEach(x -> System.out.println(x));
         System.out.println();
+    }
+
+    public static void Delete() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("---------Performing delete operation---------");
+        System.out.println("Enter id : ");
+        Long id = sc.nextLong();
+        User user = userRepository.ShowById(id);
+        if (user == null) {
+            System.out.println(id + " is inavlid id !!");
+            System.out.println("Delete operation for id " + id + " is failed !!!");
+            return;
+        }
+        userRepository.Delete(user);
+        System.out.println(" Delete operation for id "+ id + " is successfull!!");
     }
 }
