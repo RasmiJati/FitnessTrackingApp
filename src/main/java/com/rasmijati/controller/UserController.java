@@ -19,12 +19,46 @@ public class UserController {
 
     public void Options(UserRepository userRepository) {
         this.userRepository = userRepository;
-        Create();
-        Show();
-        Edit();
-        Show();
-        Delete();
-        Show();
+        String choice;
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println();
+            System.out.println();
+            System.out.println("############## Performing operation for User #############");
+            System.out.println();
+            System.out.println("Enter 1 for Create Operation :");
+            System.out.println("Enter 2 for Delete Operation :");
+            System.out.println("Enter 3 for Edit Operation :");
+            System.out.println("Enter 4 for Show Operation :");
+            System.out.println("Enter 5 for exit :");
+            System.out.println();
+            System.out.println();
+            System.out.println("Enter your choice :");
+            choice = sc.next();
+            switch (choice) {
+                case "1":
+                    Create();
+                    break;
+                case "2":
+                    Delete();
+                    break;
+
+                case "3":
+                    Edit();
+                    break;
+
+                case "4":
+                    Show();
+                    break;
+
+                case "5":
+                    return;
+
+                default:
+                    System.out.println("Invalid choice!!!");
+                    break;
+            }
+        } while (!choice.equals(0));
     }
 
     public static void Create() {
@@ -37,6 +71,7 @@ public class UserController {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("---------Performing delete operation---------");
         System.out.println("Enter id:");
         String id1 = sc.next();
         id = Long.parseLong(id1);
@@ -59,7 +94,6 @@ public class UserController {
 
         User user = new User(id, name, email, password, dob, gender);
         userRepository.Create(user);
-        System.out.println(userRepository.Show());
     }
 
     public static void Show() {
@@ -80,7 +114,7 @@ public class UserController {
             return;
         }
         userRepository.Delete(user);
-        System.out.println(" Delete operation for id " + id + " is successfull!!");
+        System.out.println("Delete operation for id " + id + " is successfull!!");
     }
 
     public static void Edit() {
@@ -102,20 +136,20 @@ public class UserController {
         }
         System.out.println("Enter name : ");
         name = sc.next();
-        
+
         System.out.println("Enter email : ");
         email = sc.next();
-        
+
         System.out.println("Enter password : ");
         password = sc.next();
-        
+
         System.out.println("Enter Birth Dare : ");
         String date = sc.next();
         dob = Date.valueOf(date);
-        
+
         System.out.println("Enter gender : ");
         gender = sc.next();
-        
+
         User u = new User(id, name, password, email, dob, gender);
         userRepository.Edit(u);
         System.out.println("Edit operation for id " + id + " is successfull!!");
