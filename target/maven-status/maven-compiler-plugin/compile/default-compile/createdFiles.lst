@@ -1,4 +1,7 @@
-com/rasmijati/controller/UserController.class
-com/rasmijati/repository/UserRepository.class
 com/rasmijati/controller/MainController.class
+com/rasmijati/controller/UserController.class
+com/rasmijati/repository/UserHealthProfileRepository.class
+com/rasmijati/controller/UserHealthProfileController.class
+com/rasmijati/repository/UserRepository.class
 com/rasmijati/model/User.class
+com/rasmijati/model/UserHealthProfile.class

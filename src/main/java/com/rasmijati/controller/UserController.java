@@ -71,7 +71,7 @@ public class UserController {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("---------Performing delete operation---------");
+        System.out.println("---------Performing create operation---------");
         System.out.println("Enter id:");
         String id1 = sc.next();
         id = Long.parseLong(id1);
