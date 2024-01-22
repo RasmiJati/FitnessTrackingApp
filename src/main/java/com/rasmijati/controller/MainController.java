@@ -3,6 +3,7 @@
  */
 package com.rasmijati.controller;
 
+import com.rasmijati.repository.HealthMetricRepository;
 import com.rasmijati.repository.UserHealthProfileRepository;
 import com.rasmijati.repository.UserRepository;
 import java.util.Scanner;
@@ -18,6 +19,8 @@ public class MainController {
         UserRepository userRepository = new UserRepository();
         UserHealthProfileController userHealthProfileController = new UserHealthProfileController();
         UserHealthProfileRepository userHealthProfileRepository = new UserHealthProfileRepository();
+        HealthMetricController healthMetricController = new HealthMetricController();
+        HealthMetricRepository healthMetricRepository = new HealthMetricRepository();
         String choice;
         Scanner sc = new Scanner(System.in);
         do {
@@ -27,7 +30,8 @@ public class MainController {
             System.out.println();
             System.out.println("Enter 1 for User : ");
             System.out.println("Enter 2 for User Health Profile : ");
-            System.out.println("Enter 3 for exit : ");
+            System.out.println("Enter 3 for Health Metric : ");
+            System.out.println("Enter 4 for exit : ");
             System.out.println();
             System.out.println();
             System.out.println("Enter your choice : ");
@@ -40,6 +44,9 @@ public class MainController {
                     userHealthProfileController.Options(userHealthProfileRepository, userRepository);
                     break;
                 case "3":
+                    healthMetricController.Options(healthMetricRepository, userRepository);
+                    break;
+                case "4":
                     return;
                 default:
                     System.out.println("Invalid Option!!");

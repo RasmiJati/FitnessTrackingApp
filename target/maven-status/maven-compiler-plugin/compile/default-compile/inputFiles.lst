@@ -7,3 +7,6 @@
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/UserRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/AbstractRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/MainController.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/HealthMetricController.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/HealthMetric.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/HealthMetricRepository.java
