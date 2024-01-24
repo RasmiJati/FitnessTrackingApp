@@ -8,9 +8,8 @@ import com.rasmijati.model.PhysicalActivity;
 import com.rasmijati.model.User;
 import com.rasmijati.repository.PhysicalActivityRepository;
 import com.rasmijati.repository.UserRepository;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.rasmijati.util.DateUtil;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +21,7 @@ public class PhysicalActivityController {
 
     private static UserRepository userRepository;
     private static PhysicalActivityRepository physicalActivityRepository;
+    private static DateUtil dateUtil = new DateUtil();
 
     public void Options(PhysicalActivityRepository physicalActivityRepository, UserRepository userRepository) {
         this.physicalActivityRepository = physicalActivityRepository;
@@ -71,7 +71,7 @@ public class PhysicalActivityController {
         String activitytype = null;
         String duration = null;
         String caloriesburned = null;
-        Date datelogged = null;
+        LocalDate datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing create operation---------------");
 
@@ -113,19 +113,17 @@ public class PhysicalActivityController {
             System.out.println("Enter Calories burned : ");
             caloriesburned = sc.next();
         }
-        System.out.println("Enter Date : ");
-        String date = sc.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            // Parse the input string into a Date object
-            datelogged = dateFormat.parse(date);
+        while (true) {
+            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            String dateStr = sc.next();
+            datelogged = dateUtil.parseStringToDate(dateStr);
 
-            // Print the parsed Date object
-        } catch (ParseException e) {
-            // Handle the case where the input string is not in the expected format
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+            if (datelogged != null) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+            }
         }
-
         PhysicalActivity physicalActivity = new PhysicalActivity(id, user, activitytype, duration, caloriesburned, datelogged);
         physicalActivityRepository.Create(physicalActivity);
         System.out.println("Create operation successfull!!!!");
@@ -159,7 +157,7 @@ public class PhysicalActivityController {
         String activitytype = null;
         String duration = null;
         String caloriesburned = null;
-        Date datelogged = null;
+        LocalDate datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing edit operation---------------");
         System.out.println("Enter id : ");
@@ -204,17 +202,16 @@ public class PhysicalActivityController {
             System.out.println("Enter Calories burned : ");
             caloriesburned = sc.next();
         }
-        System.out.println("Enter Date : ");
-        String date = sc.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            // Parse the input string into a Date object
-            datelogged = dateFormat.parse(date);
+        while (true) {
+            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            String dateStr = sc.next();
+            datelogged = dateUtil.parseStringToDate(dateStr);
 
-            // Print the parsed Date object
-        } catch (ParseException e) {
-            // Handle the case where the input string is not in the expected format
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+            if (datelogged != null) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+            }
         }
 
         PhysicalActivity physicalActivities = new PhysicalActivity(id, user, activitytype, duration, caloriesburned, datelogged);

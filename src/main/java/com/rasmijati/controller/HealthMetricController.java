@@ -8,9 +8,10 @@ import com.rasmijati.model.HealthMetric;
 import com.rasmijati.model.User;
 import com.rasmijati.repository.HealthMetricRepository;
 import com.rasmijati.repository.UserRepository;
+import com.rasmijati.util.DateUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +23,7 @@ public class HealthMetricController {
 
     private static HealthMetricRepository healthMetricRepository;
     private static UserRepository userRepository;
+    private static DateUtil dateUtil = new DateUtil();
 
     public void Options(HealthMetricRepository healthMetricRepository, UserRepository userRepository) {
         this.healthMetricRepository = healthMetricRepository;
@@ -73,7 +75,7 @@ public class HealthMetricController {
         User user = null;
         String metricType = null;
         Double value = null;
-        Date datelogged = null;
+        LocalDate datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing Create Operation------------");
 
@@ -109,17 +111,16 @@ public class HealthMetricController {
             System.out.println("Enter Value : ");
             value = sc.nextDouble();
         }
-        System.out.println("Enter Date Logged : ");
-        String date = sc.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            // Parse the input string into a Date object
-            datelogged = dateFormat.parse(date);
+        while (true) {
+            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            String dateStr = sc.next();
+            datelogged = dateUtil.parseStringToDate(dateStr);
 
-            // Print the parsed Date object
-        } catch (ParseException e) {
-            // Handle the case where the input string is not in the expected format
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+            if (datelogged != null) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+            }
         }
 
         HealthMetric healthMetric = new HealthMetric(id, user, metricType, value, datelogged);
@@ -155,7 +156,7 @@ public class HealthMetricController {
         User user = null;
         String metricType = null;
         Double value = null;
-        Date datelogged = null;
+        LocalDate datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing Edit Operation------------");
 
@@ -196,17 +197,16 @@ public class HealthMetricController {
             System.out.println("Enter Value : ");
             value = sc.nextDouble();
         }
-        System.out.println("Enter Date Logged : ");
-        String date = sc.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            // Parse the input string into a Date object
-            datelogged = dateFormat.parse(date);
+        while (true) {
+            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            String dateStr = sc.next();
+            datelogged = dateUtil.parseStringToDate(dateStr);
 
-            // Print the parsed Date object
-        } catch (ParseException e) {
-            // Handle the case where the input string is not in the expected format
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+            if (datelogged != null) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+            }
         }
 
         HealthMetric healthMetrics = new HealthMetric(id, user, metricType, value, datelogged);

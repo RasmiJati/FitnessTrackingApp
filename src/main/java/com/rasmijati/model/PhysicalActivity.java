@@ -4,7 +4,7 @@
  */
 package com.rasmijati.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,12 +17,12 @@ public class PhysicalActivity implements IEntity {
     private String activitytype;
     private String duration;
     private String caloriesburned;
-    private Date datelogged;
+    private LocalDate datelogged;
 
     public PhysicalActivity() {
     }
 
-    public PhysicalActivity(Long id, User user, String activitytype, String duration, String caloriesburned, Date datelogged) {
+    public PhysicalActivity(Long id, User user, String activitytype, String duration, String caloriesburned, LocalDate datelogged) {
         this.id = id;
         this.user = user;
         this.activitytype = activitytype;
@@ -73,11 +73,11 @@ public class PhysicalActivity implements IEntity {
         this.caloriesburned = caloriesburned;
     }
 
-    public Date getDatelogged() {
+    public LocalDate getDatelogged() {
         return datelogged;
     }
 
-    public void setDatelogged(Date datelogged) {
+    public void setDatelogged(LocalDate datelogged) {
         this.datelogged = datelogged;
     }
 

@@ -4,7 +4,7 @@
  */
 package com.rasmijati.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 
@@ -21,12 +21,12 @@ public class HealthMetric implements IEntity {
     private User user;
     private String MetricType;
     private Double value;
-    private Date datelogged;
+    private LocalDate datelogged;
 
     public HealthMetric() {
     }
 
-    public HealthMetric(Long id, User user, String MetricType, Double value, Date datelogged) {
+    public HealthMetric(Long id, User user, String MetricType, Double value, LocalDate datelogged) {
         this.id = id;
         this.user = user;
         this.MetricType = MetricType;
@@ -68,11 +68,11 @@ public class HealthMetric implements IEntity {
         this.value = value;
     }
 
-    public Date getDatelogged() {
+    public LocalDate getDatelogged() {
         return datelogged;
     }
 
-    public void setDatelogged(Date datelogged) {
+    public void setDatelogged(LocalDate datelogged) {
         this.datelogged = datelogged;
     }
 

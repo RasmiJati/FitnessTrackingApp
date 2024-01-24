@@ -5,8 +5,6 @@
 package com.rasmijati.model;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 
 /**
  *

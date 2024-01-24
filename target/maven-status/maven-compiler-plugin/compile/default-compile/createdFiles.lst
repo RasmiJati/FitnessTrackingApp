@@ -1,3 +1,4 @@
+com/rasmijati/util/DateUtil.class
 com/rasmijati/repository/HealthMetricRepository.class
 com/rasmijati/repository/PhysicalActivityRepository.class
 com/rasmijati/controller/UserController.class
