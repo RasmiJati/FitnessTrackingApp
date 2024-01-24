@@ -1,4 +1,5 @@
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/IEntity.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/NutritionLogRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/UserController.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/PhysicalActivityRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/UserHealthProfileController.java
@@ -6,10 +7,12 @@
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/PhysicalActivityController.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/MainController.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/HealthMetric.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/NutritionLog.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/UserHealthProfile.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/User.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/UserHealthProfileRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/model/PhysicalActivity.java
+/home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/NutritionLogController.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/repository/UserRepository.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/controller/HealthMetricController.java
 /home/rasmi/NetBeansProjects/FitnessTrackingApp/src/main/java/com/rasmijati/util/DateUtil.java

@@ -4,6 +4,7 @@
 package com.rasmijati.controller;
 
 import com.rasmijati.repository.HealthMetricRepository;
+import com.rasmijati.repository.NutritionLogRepository;
 import com.rasmijati.repository.PhysicalActivityRepository;
 import com.rasmijati.repository.UserHealthProfileRepository;
 import com.rasmijati.repository.UserRepository;
@@ -24,6 +25,9 @@ public class MainController {
         HealthMetricRepository healthMetricRepository = new HealthMetricRepository();
         PhysicalActivityController physicalActivityController = new PhysicalActivityController();
         PhysicalActivityRepository physicalActivitryRepository = new PhysicalActivityRepository();
+        NutritionLogController nutritionLogController = new NutritionLogController();
+        NutritionLogRepository nutritionLogRepository = new NutritionLogRepository();
+
         String choice;
         Scanner sc = new Scanner(System.in);
         do {
@@ -35,7 +39,8 @@ public class MainController {
             System.out.println("Enter 2 for User Health Profile : ");
             System.out.println("Enter 3 for Health Metric : ");
             System.out.println("Enter 4 for Physical Activity : ");
-            System.out.println("Enter 5 for exit : ");
+            System.out.println("Enter 5 for Nutrition Log : ");
+            System.out.println("Enter 6 for exit : ");
             System.out.println();
             System.out.println();
             System.out.println("Enter your choice : ");
@@ -54,6 +59,8 @@ public class MainController {
                     physicalActivityController.Options(physicalActivitryRepository, userRepository);
                     break;
                 case "5":
+                    nutritionLogController.Options(nutritionLogRepository, userRepository);
+                case "6":
                     return;
                 default:
                     System.out.println("Invalid Option!!");

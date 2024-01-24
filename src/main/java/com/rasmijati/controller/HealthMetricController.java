@@ -112,7 +112,7 @@ public class HealthMetricController {
             value = sc.nextDouble();
         }
         while (true) {
-            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
             datelogged = dateUtil.parseStringToDate(dateStr);
 
@@ -198,7 +198,7 @@ public class HealthMetricController {
             value = sc.nextDouble();
         }
         while (true) {
-            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+            System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
             datelogged = dateUtil.parseStringToDate(dateStr);
 
