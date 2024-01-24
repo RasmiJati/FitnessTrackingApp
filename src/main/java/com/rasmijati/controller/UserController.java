@@ -62,36 +62,41 @@ public class UserController {
     }
 
     public static void Create() {
-        Long id;
-        String name;
-        String password;
-        String email;
+        Long id = null;
+        String name = null;
+        String password = null;
+        String email = null;
         Date dob;
-        String gender;
+        String gender = null;
 
         Scanner sc = new Scanner(System.in);
 
         System.out.println("---------Performing create operation---------");
-        System.out.println("Enter id:");
-        String id1 = sc.next();
-        id = Long.parseLong(id1);
-
-        System.out.println("Enter name: ");
-        name = sc.next();
-
-        System.out.println("Enter email : ");
-        email = sc.next();
-
-        System.out.println("Enter password : ");
-        password = sc.next();
-
+        while (id == null) {
+            System.out.println("Enter id:");
+            String id1 = sc.next();
+            id = Long.parseLong(id1);
+        }
+        while (name == null || name.isEmpty()) {
+            System.out.println("Enter name: ");
+            name = sc.next();
+        }
+        while (email == null || email.isEmpty()) {
+            System.out.println("Enter email : ");
+            email = sc.next();
+        }
+        while (password == null || password.isEmpty()) {
+            System.out.println("Enter password : ");
+            password = sc.next();
+        }
         System.out.println("Enter Birth Date : ");
         String date = sc.next();
         dob = Date.valueOf(date);
 
-        System.out.println("Enter gender :");
-        gender = sc.next();
-
+        while (gender == null || gender.isEmpty()) {
+            System.out.println("Enter gender :");
+            gender = sc.next();
+        }
         User user = new User(id, name, email, password, dob, gender);
         userRepository.Create(user);
     }
@@ -134,21 +139,26 @@ public class UserController {
             System.out.println("Edit operation for id " + id + " is failed !!!");
             return;
         }
-        System.out.println("Enter name : ");
-        name = sc.next();
-
-        System.out.println("Enter email : ");
-        email = sc.next();
-
-        System.out.println("Enter password : ");
-        password = sc.next();
-
+        while (name == null || name.isEmpty()) {
+            System.out.println("Enter name: ");
+            name = sc.next();
+        }
+        while (email == null || email.isEmpty()) {
+            System.out.println("Enter email : ");
+            email = sc.next();
+        }
+        while (password == null || password.isEmpty()) {
+            System.out.println("Enter password : ");
+            password = sc.next();
+        }
         System.out.println("Enter Birth Date : ");
         String date = sc.next();
         dob = Date.valueOf(date);
 
-        System.out.println("Enter gender : ");
-        gender = sc.next();
+        while (gender == null || gender.isEmpty()) {
+            System.out.println("Enter gender :");
+            gender = sc.next();
+        }
 
         User u = new User(id, name, password, email, dob, gender);
         userRepository.Edit(u);

@@ -14,19 +14,19 @@ public class User implements IEntity{
 
     private Long id;
     private String name;
-    private String password;
     private String email;
+    private String password;
     private Date birthdate;
     private String gender;
 
     public User() {
     }
 
-    public User(Long id, String name, String password, String email, Date birthdate, String gender) {
+    public User(Long id, String name,  String email, String password, Date birthdate, String gender) {
         this.id = id;
-        this.name = name;
-        this.password = password;
+        this.name = name;       
         this.email = email;
+        this.password = password;
         this.birthdate = birthdate;
         this.gender = gender;
     }
@@ -83,6 +83,6 @@ public class User implements IEntity{
 
     @Override
     public String toString() {
-        return "id: " + id + " name: " + name + " password: " + password + " email: " + email + " DOB: " + birthdate + " Gender: " + gender;
+        return "id: " + id + " name: " + name + " email: " + email + " password: " + password +  " DOB: " + birthdate + " Gender: " + gender;
     }
 }

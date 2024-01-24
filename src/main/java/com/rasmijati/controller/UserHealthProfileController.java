@@ -77,38 +77,51 @@ public class UserHealthProfileController {
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing create operation---------------");
 
-        System.out.println("Enter id : ");
-        id = sc.nextLong();
-
-        System.out.println("Choose User : ");
-        List<User> users = userRepository.Show();
-        while (user == null) {
-            System.out.println("------Users Information----------");
-            System.out.println(users);
-
-            Long uid = null;
-            while (uid == null) {
-                System.out.println("--------User Selection-----------");
-                System.out.println("Enter id : ");
-                uid = sc.nextLong();
-            }
-            user = userRepository.ShowById(uid);
+        while (id == null) {
+            System.out.println("Enter id : ");
+            id = sc.nextLong();
         }
-        System.out.println("Enter weight : ");
-        weight = sc.nextDouble();
+        while (user == null) {
+            System.out.println("Choose User : ");
+            List<User> users = userRepository.Show();
+            while (user == null) {
+                System.out.println("------Users Information----------");
+                System.out.println(users);
 
-        System.out.println("Enter height : ");
-        height = sc.nextDouble();
+                Long uid = null;
+                while (uid == null) {
+                    System.out.println("--------User Selection-----------");
+                    System.out.println("Enter id : ");
+                    uid = sc.nextLong();
+                }
+                user = userRepository.ShowById(uid);
+                if (user == null) {
+                    System.out.println("User with id " + uid + " not found!! Please select another user!!!");
+                    System.out.println();
+                }
+            }
+        }
 
-        System.out.println("Enter bmi : ");
-        bmi = sc.nextDouble();
-
-        System.out.println("Enter blood pressure : ");
-        bp = sc.next();
-
-        System.out.println("Enter heartrate : ");
-        heartrate = sc.nextBigDecimal();
-
+        while (weight == null) {
+            System.out.println("Enter weight : ");
+            weight = sc.nextDouble();
+        }
+        while (height == null) {
+            System.out.println("Enter height : ");
+            height = sc.nextDouble();
+        }
+        while (bmi == null) {
+            System.out.println("Enter bmi : ");
+            bmi = sc.nextDouble();
+        }
+        while (bp == null || bp.isEmpty()) {
+            System.out.println("Enter blood pressure : ");
+            bp = sc.next();
+        }
+        while (heartrate == null) {
+            System.out.println("Enter heartrate : ");
+            heartrate = sc.nextBigDecimal();
+        }
         UserHealthProfile userHealthProfile = new UserHealthProfile(id, user, weight, height, bmi, bp, heartrate);
         userHealthProfileRepository.Create(userHealthProfile);
         System.out.println("Create Operation Successfull!!");
@@ -155,34 +168,47 @@ public class UserHealthProfileController {
             System.out.println("Edit operation for id " + id + " is failed !!!");
             return;
         }
-        System.out.println("Choose User : ");
-        List<User> users = userRepository.Show();
         while (user == null) {
-            System.out.println("------Users Information----------");
-            System.out.println(users);
+            System.out.println("Choose User : ");
+            List<User> users = userRepository.Show();
+            while (user == null) {
+                System.out.println("------Users Information----------");
+                System.out.println(users);
 
-            Long uid = null;
-            while (uid == null) {
-                System.out.println("--------User Selection-----------");
-                System.out.println("Enter id : ");
-                uid = sc.nextLong();
+                Long uid = null;
+                while (uid == null) {
+                    System.out.println("--------User Selection-----------");
+                    System.out.println("Enter id : ");
+                    uid = sc.nextLong();
+                }
+                user = userRepository.ShowById(uid);
+                if (user == null) {
+                    System.out.println("User with id " + uid + " not found!! Please select another user!!!");
+                    System.out.println();
+                }
             }
-            user = userRepository.ShowById(uid);
         }
-        System.out.println("Enter weight : ");
-        weight = sc.nextDouble();
 
-        System.out.println("Enter height : ");
-        height = sc.nextDouble();
-
-        System.out.println("Enter bmi : ");
-        bmi = sc.nextDouble();
-
-        System.out.println("Enter blood pressure : ");
-        bp = sc.next();
-
-        System.out.println("Enter heartrate : ");
-        heartrate = sc.nextBigDecimal();
+        while (weight == null) {
+            System.out.println("Enter weight : ");
+            weight = sc.nextDouble();
+        }
+        while (height == null) {
+            System.out.println("Enter height : ");
+            height = sc.nextDouble();
+        }
+        while (bmi == null) {
+            System.out.println("Enter bmi : ");
+            bmi = sc.nextDouble();
+        }
+        while (bp == null || bp.isEmpty()) {
+            System.out.println("Enter blood pressure : ");
+            bp = sc.next();
+        }
+        while (heartrate == null) {
+            System.out.println("Enter heartrate : ");
+            heartrate = sc.nextBigDecimal();
+        }
 
         UserHealthProfile usersHealthProfile = new UserHealthProfile(id, user, weight, height, bmi, bp, heartrate);
         userHealthProfileRepository.Edit(usersHealthProfile);

@@ -75,30 +75,38 @@ public class HealthMetricController {
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing Create Operation------------");
 
-        System.out.println("Enter id : ");
-        id = sc.nextLong();
-
-        System.out.println("Choose User : ");
-        List<User> users = userRepository.Show();
-        while (user == null) {
-            System.out.println("------Users Information----------");
-            System.out.println(users);
-
-            Long uid = null;
-            while (uid == null) {
-                System.out.println("--------User Selection-----------");
-                System.out.println("Enter id : ");
-                uid = sc.nextLong();
-            }
-            user = userRepository.ShowById(uid);
+        while (id == null) {
+            System.out.println("Enter id : ");
+            id = sc.nextLong();
         }
+        while (user == null) {
+            System.out.println("Choose User : ");
+            List<User> users = userRepository.Show();
+            while (user == null) {
+                System.out.println("------Users Information----------");
+                System.out.println(users);
 
-        System.out.println("Enter Metric Type : ");
-        metricType = sc.next();
-
-        System.out.println("Enter Value : ");
-        value = sc.nextDouble();
-
+                Long uid = null;
+                while (uid == null) {
+                    System.out.println("--------User Selection-----------");
+                    System.out.println("Enter id : ");
+                    uid = sc.nextLong();
+                }
+                user = userRepository.ShowById(uid);
+                if (user == null) {
+                    System.out.println("User with id " + uid + " not found!! Please select another user!!!");
+                    System.out.println();
+                }
+            }
+        }
+        while (metricType == null || metricType.isEmpty()) {
+            System.out.println("Enter Metric Type : ");
+            metricType = sc.next();
+        }
+        while (value == null) {
+            System.out.println("Enter Value : ");
+            value = sc.nextDouble();
+        }
         System.out.println("Enter Date Logged : ");
         String date = sc.next();
         datelogged = Date.valueOf(date);
@@ -149,27 +157,34 @@ public class HealthMetricController {
             return;
         }
 
-        System.out.println("Choose User : ");
-        List<User> users = userRepository.Show();
         while (user == null) {
-            System.out.println("------Users Information----------");
-            System.out.println(users);
+            System.out.println("Choose User : ");
+            List<User> users = userRepository.Show();
+            while (user == null) {
+                System.out.println("------Users Information----------");
+                System.out.println(users);
 
-            Long uid = null;
-            while (uid == null) {
-                System.out.println("--------User Selection-----------");
-                System.out.println("Enter id : ");
-                uid = sc.nextLong();
+                Long uid = null;
+                while (uid == null) {
+                    System.out.println("--------User Selection-----------");
+                    System.out.println("Enter id : ");
+                    uid = sc.nextLong();
+                }
+                user = userRepository.ShowById(uid);
+                if (user == null) {
+                    System.out.println("User with id " + uid + " not found!! Please select another user!!!");
+                    System.out.println();
+                }
             }
-            user = userRepository.ShowById(uid);
         }
-
-        System.out.println("Enter Metric Type : ");
-        metricType = sc.next();
-
-        System.out.println("Enter Value : ");
-        value = sc.nextDouble();
-
+        while (metricType == null || metricType.isEmpty()) {
+            System.out.println("Enter Metric Type : ");
+            metricType = sc.next();
+        }
+        while (value == null) {
+            System.out.println("Enter Value : ");
+            value = sc.nextDouble();
+        }
         System.out.println("Enter Date Logged : ");
         String date = sc.next();
         datelogged = Date.valueOf(date);
