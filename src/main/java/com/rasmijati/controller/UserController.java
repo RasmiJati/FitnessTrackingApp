@@ -8,7 +8,8 @@ import com.rasmijati.model.User;
 import com.rasmijati.repository.UserRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -68,7 +69,7 @@ public class UserController {
         String name = null;
         String password = null;
         String email = null;
-        Date dob = null;
+        LocalDate dob = null;
         String gender = null;
 
         Scanner sc = new Scanner(System.in);
@@ -91,19 +92,12 @@ public class UserController {
             System.out.println("Enter password : ");
             password = sc.next();
         }
-        System.out.println("Enter Birth Date : ");
-        String date = sc.next();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            // Parse the input string into a Date object
-            dob = dateFormat.parse(date);
-
-            // Print the parsed Date object
-        } catch (ParseException e) {
-            // Handle the case where the input string is not in the expected format
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
-        }
+        
+        System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+        String dateStr = sc.next();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        dob = LocalDate.parse(dateStr, formatter);
+        
         while (gender == null || gender.isEmpty()) {
             System.out.println("Enter gender :");
             gender = sc.next();
@@ -138,7 +132,7 @@ public class UserController {
         String name = null;
         String email = null;
         String password = null;
-        Date dob = null;
+        LocalDate dob = null;
         String gender = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("----------Performing Edit Operation--------------");
@@ -162,14 +156,10 @@ public class UserController {
             System.out.println("Enter password : ");
             password = sc.next();
         }
-        System.out.println("Enter Birth Date : ");
-        String date = sc.next();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            dob = dateFormat.parse(date);
-        } catch (ParseException e) {
-            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
-        }
+        System.out.println("Enter Birth Date (yyyy-MM-dd): ");
+        String dateStr = sc.next();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        dob = LocalDate.parse(dateStr, formatter);
 
         while (gender == null || gender.isEmpty()) {
             System.out.println("Enter gender :");
