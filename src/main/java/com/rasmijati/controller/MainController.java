@@ -4,6 +4,7 @@
 package com.rasmijati.controller;
 
 import com.rasmijati.repository.HealthMetricRepository;
+import com.rasmijati.repository.PhysicalActivityRepository;
 import com.rasmijati.repository.UserHealthProfileRepository;
 import com.rasmijati.repository.UserRepository;
 import java.util.Scanner;
@@ -21,6 +22,8 @@ public class MainController {
         UserHealthProfileRepository userHealthProfileRepository = new UserHealthProfileRepository();
         HealthMetricController healthMetricController = new HealthMetricController();
         HealthMetricRepository healthMetricRepository = new HealthMetricRepository();
+        PhysicalActivityController physicalActivityController = new PhysicalActivityController();
+        PhysicalActivityRepository physicalActivitryRepository = new PhysicalActivityRepository();
         String choice;
         Scanner sc = new Scanner(System.in);
         do {
@@ -31,7 +34,8 @@ public class MainController {
             System.out.println("Enter 1 for User : ");
             System.out.println("Enter 2 for User Health Profile : ");
             System.out.println("Enter 3 for Health Metric : ");
-            System.out.println("Enter 4 for exit : ");
+            System.out.println("Enter 4 for Physical Activity : ");
+            System.out.println("Enter 5 for exit : ");
             System.out.println();
             System.out.println();
             System.out.println("Enter your choice : ");
@@ -47,11 +51,14 @@ public class MainController {
                     healthMetricController.Options(healthMetricRepository, userRepository);
                     break;
                 case "4":
+                    physicalActivityController.Options(physicalActivitryRepository, userRepository);
+                    break;
+                case "5":
                     return;
                 default:
                     System.out.println("Invalid Option!!");
                     break;
             }
-        } while (!choice.equals(0));
+        } while (!choice.equals("0"));
     }
 }
