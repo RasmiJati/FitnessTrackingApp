@@ -8,6 +8,8 @@ import com.rasmijati.model.HealthMetric;
 import com.rasmijati.model.User;
 import com.rasmijati.repository.HealthMetricRepository;
 import com.rasmijati.repository.UserRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -109,7 +111,16 @@ public class HealthMetricController {
         }
         System.out.println("Enter Date Logged : ");
         String date = sc.next();
-        datelogged = Date.valueOf(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            // Parse the input string into a Date object
+            datelogged = dateFormat.parse(date);
+
+            // Print the parsed Date object
+        } catch (ParseException e) {
+            // Handle the case where the input string is not in the expected format
+            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+        }
 
         HealthMetric healthMetric = new HealthMetric(id, user, metricType, value, datelogged);
         healthMetricRepository.Create(healthMetric);
@@ -187,7 +198,16 @@ public class HealthMetricController {
         }
         System.out.println("Enter Date Logged : ");
         String date = sc.next();
-        datelogged = Date.valueOf(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            // Parse the input string into a Date object
+            datelogged = dateFormat.parse(date);
+
+            // Print the parsed Date object
+        } catch (ParseException e) {
+            // Handle the case where the input string is not in the expected format
+            System.out.println("Error parsing the date. Make sure it is in the format yyyy-MM-dd.");
+        }
 
         HealthMetric healthMetrics = new HealthMetric(id, user, metricType, value, datelogged);
         healthMetricRepository.Edit(healthMetrics);
