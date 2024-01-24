@@ -8,7 +8,7 @@ import com.rasmijati.model.HealthMetric;
 import com.rasmijati.model.User;
 import com.rasmijati.repository.HealthMetricRepository;
 import com.rasmijati.repository.UserRepository;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,7 +63,7 @@ public class HealthMetricController {
                     System.out.println("Invalid choice!!!");
                     break;
             }
-        } while (!choice.equals(0));
+        } while (!choice.equals("0"));
     }
 
     public static void Create() {

@@ -63,7 +63,7 @@ public class UserHealthProfileController {
                     System.out.println("Invalid choice!!!");
                     break;
             }
-        } while (!choice.equals(0));
+        } while (!choice.equals("0"));
     }
 
     public static void Create() {
