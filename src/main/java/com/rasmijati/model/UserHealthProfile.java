@@ -5,6 +5,7 @@
 package com.rasmijati.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  *
@@ -91,6 +92,59 @@ public class UserHealthProfile implements IEntity{
         this.heartrate = heartrate;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public final int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.user);
+        hash = 37 * hash + Objects.hashCode(this.weight);
+        hash = 37 * hash + Objects.hashCode(this.height);
+        hash = 37 * hash + Objects.hashCode(this.bmi);
+        hash = 37 * hash + Objects.hashCode(this.bp);
+        hash = 37 * hash + Objects.hashCode(this.heartrate);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof UserHealthProfile)) {
+            return false;
+        }
+        final UserHealthProfile other = (UserHealthProfile) obj;
+        if (!Objects.equals(this.bp, other.bp)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.weight, other.weight)) {
+            return false;
+        }
+        if (!Objects.equals(this.height, other.height)) {
+            return false;
+        }
+        if (!Objects.equals(this.bmi, other.bmi)) {
+            return false;
+        }
+        return Objects.equals(this.heartrate, other.heartrate);
+    }
+
+    
     @Override
     public String toString() {
         return "UserHealthProfile{" + "id=" + id + ", user=" + user + ", weight=" + weight + ", height=" + height + ", bmi=" + bmi + ", bp=" + bp + ", heartrate=" + heartrate + '}';

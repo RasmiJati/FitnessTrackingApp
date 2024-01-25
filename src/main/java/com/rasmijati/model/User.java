@@ -5,6 +5,7 @@
 package com.rasmijati.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
@@ -80,6 +81,56 @@ public class User implements IEntity{
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+//    hashcode and equals is used to define object equality and to enable effective use of objects in hash-based data
+    /**
+     *
+     * @return
+     */
+    @Override
+    public final int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + Objects.hashCode(this.email);
+        hash = 13 * hash + Objects.hashCode(this.password);
+        hash = 13 * hash + Objects.hashCode(this.birthdate);
+        hash = 13 * hash + Objects.hashCode(this.gender);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.gender, other.gender)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return Objects.equals(this.birthdate, other.birthdate);
+    }
+    
 
     @Override
     public String toString() {

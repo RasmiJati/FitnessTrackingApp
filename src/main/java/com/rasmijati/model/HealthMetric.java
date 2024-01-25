@@ -5,11 +5,7 @@
 package com.rasmijati.model;
 
 import java.time.LocalDate;
-
-
-
-
-
+import java.util.Objects;
 
 /**
  *
@@ -74,6 +70,41 @@ public class HealthMetric implements IEntity {
 
     public void setDatelogged(LocalDate datelogged) {
         this.datelogged = datelogged;
+    }
+
+    @Override
+    public final int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.user);
+        hash = 29 * hash + Objects.hashCode(this.MetricType);
+        hash = 29 * hash + Objects.hashCode(this.value);
+        hash = 29 * hash + Objects.hashCode(this.datelogged);
+        return hash;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof HealthMetric)) {
+            return false;
+        }
+        final HealthMetric other = (HealthMetric) obj;
+        if (!Objects.equals(this.MetricType, other.MetricType)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.value, other.value)) {
+            return false;
+        }
+        return Objects.equals(this.datelogged, other.datelogged);
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.rasmijati.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -89,6 +90,60 @@ public class NutritionLog implements IEntity{
         this.dateLogged = dateLogged;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public final int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.user);
+        hash = 29 * hash + Objects.hashCode(this.mealType);
+        hash = 29 * hash + Objects.hashCode(this.foodItems);
+        hash = 29 * hash + Objects.hashCode(this.portionSizes);
+        hash = 29 * hash + Objects.hashCode(this.caloriesConsumed);
+        hash = 29 * hash + Objects.hashCode(this.dateLogged);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+       if (!(obj instanceof NutritionLog)) {
+            return false;
+        }
+        final NutritionLog other = (NutritionLog) obj;
+        if (!Objects.equals(this.mealType, other.mealType)) {
+            return false;
+        }
+        if (!Objects.equals(this.caloriesConsumed, other.caloriesConsumed)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.foodItems, other.foodItems)) {
+            return false;
+        }
+        if (!Objects.equals(this.portionSizes, other.portionSizes)) {
+            return false;
+        }
+        return Objects.equals(this.dateLogged, other.dateLogged);
+    }
+
+    
+    
     @Override
     public String toString() {
         return "NutritionLog{" + "id=" + id + ", user=" + user + ", mealType=" + mealType + ", foodItems=" + foodItems + ", portionSizes=" + portionSizes + ", caloriesConsumed=" + caloriesConsumed + ", dateLogged=" + dateLogged + '}';
