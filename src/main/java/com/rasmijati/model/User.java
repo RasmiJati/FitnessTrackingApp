@@ -4,7 +4,6 @@
  */
 package com.rasmijati.model;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -17,13 +16,13 @@ public class User implements IEntity{
     private String name;
     private String email;
     private String password;
-    private LocalDate birthdate;
+    private String birthdate;
     private String gender;
 
     public User() {
     }
 
-    public User(Long id, String name,  String email, String password, LocalDate birthdate, String gender) {
+    public User(Long id, String name,  String email, String password, String birthdate, String gender) {
         this.id = id;
         this.name = name;       
         this.email = email;
@@ -49,7 +48,7 @@ public class User implements IEntity{
         return email;
     }
 
-    public LocalDate getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
@@ -74,7 +73,7 @@ public class User implements IEntity{
         this.email = email;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

@@ -6,11 +6,6 @@ package com.rasmijati.controller;
 
 import com.rasmijati.model.User;
 import com.rasmijati.repository.UserRepository;
-import com.rasmijati.util.DateUtil;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -20,7 +15,6 @@ import java.util.Scanner;
 public class UserController {
 
     private static UserRepository userRepository;
-    private static DateUtil dateUtil;
 
     public void Options(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -71,16 +65,14 @@ public class UserController {
         String name = null;
         String password = null;
         String email = null;
-        LocalDate dob = null;
+        String dob = null;
         String gender = null;
-        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("---------Performing create operation---------");
         while (id == null) {
             System.out.println("Enter id:");
-            String id1 = sc.next();
-            id = Long.parseLong(id1);
+            id = sc.nextLong();
         }
         while (name == null || name.isEmpty()) {
             System.out.println("Enter name: ");
@@ -95,18 +87,9 @@ public class UserController {
             password = sc.next();
         }
 
-        while (true) {
-            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
-            String dateStr = sc.next();
-            dob = dateUtil.parseStringToDate(dateStr);
-
-            if (dob != null) {
-                // Break out of the loop if a valid date is entered
-                break;
-            } else {
-                // Inform the user about the invalid date format
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+        while (dob == null || dob.isEmpty()) {
+            System.out.println("Enter birth date : ");
+            dob = sc.next();
         }
 
         while (gender == null || gender.isEmpty()) {
@@ -143,9 +126,8 @@ public class UserController {
         String name = null;
         String email = null;
         String password = null;
-        LocalDate dob = null;
+        String dob = null;
         String gender = null;
-        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
         System.out.println("----------Performing Edit Operation--------------");
         System.out.println("Enter id : ");
@@ -168,18 +150,10 @@ public class UserController {
             System.out.println("Enter password : ");
             password = sc.next();
         }
-        while (true) {
-            System.out.println("Enter Birth Date (yyyy-MM-dd): ");
-            String dateStr = sc.next();
-            dob = dateUtil.parseStringToDate(dateStr);
-
-            if (dob != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+        while (dob == null || dob.isEmpty()) {
+            System.out.println("Enter birth date : ");
+            dob = sc.next();
         }
-
         while (gender == null || gender.isEmpty()) {
             System.out.println("Enter gender :");
             gender = sc.next();
