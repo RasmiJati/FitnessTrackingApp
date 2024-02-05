@@ -9,7 +9,7 @@ import com.rasmijati.model.User;
 import com.rasmijati.repository.PhysicalActivityRepository;
 import com.rasmijati.repository.UserRepository;
 import com.rasmijati.util.DateUtil;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class PhysicalActivityController {
 
     private static UserRepository userRepository;
     private static PhysicalActivityRepository physicalActivityRepository;
-    private static DateUtil dateUtil = new DateUtil();
+    private static DateUtil dateUtil;
 
     public void Options(PhysicalActivityRepository physicalActivityRepository, UserRepository userRepository) {
         this.physicalActivityRepository = physicalActivityRepository;
@@ -71,7 +71,8 @@ public class PhysicalActivityController {
         String activitytype = null;
         String duration = null;
         String caloriesburned = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
+        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing create operation---------------");
 
@@ -113,16 +114,10 @@ public class PhysicalActivityController {
             System.out.println("Enter Calories burned : ");
             caloriesburned = sc.next();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
         PhysicalActivity physicalActivity = new PhysicalActivity(id, user, activitytype, duration, caloriesburned, datelogged);
         physicalActivityRepository.Create(physicalActivity);
@@ -157,7 +152,7 @@ public class PhysicalActivityController {
         String activitytype = null;
         String duration = null;
         String caloriesburned = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing edit operation---------------");
         System.out.println("Enter id : ");
@@ -202,16 +197,10 @@ public class PhysicalActivityController {
             System.out.println("Enter Calories burned : ");
             caloriesburned = sc.next();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
 
         PhysicalActivity physicalActivities = new PhysicalActivity(id, user, activitytype, duration, caloriesburned, datelogged);
