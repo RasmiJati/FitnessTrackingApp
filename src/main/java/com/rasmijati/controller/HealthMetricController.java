@@ -9,9 +9,7 @@ import com.rasmijati.model.User;
 import com.rasmijati.repository.HealthMetricRepository;
 import com.rasmijati.repository.UserRepository;
 import com.rasmijati.util.DateUtil;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +21,7 @@ public class HealthMetricController {
 
     private static HealthMetricRepository healthMetricRepository;
     private static UserRepository userRepository;
-    private static DateUtil dateUtil = new DateUtil();
+    private static DateUtil dateUtil;
 
     public void Options(HealthMetricRepository healthMetricRepository, UserRepository userRepository) {
         this.healthMetricRepository = healthMetricRepository;
@@ -75,7 +73,8 @@ public class HealthMetricController {
         User user = null;
         String metricType = null;
         Double value = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
+        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing Create Operation------------");
 
@@ -111,18 +110,11 @@ public class HealthMetricController {
             System.out.println("Enter Value : ");
             value = sc.nextDouble();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
-
         HealthMetric healthMetric = new HealthMetric(id, user, metricType, value, datelogged);
         healthMetricRepository.Create(healthMetric);
         System.out.println("Create Operation Successfull!!");
@@ -156,7 +148,7 @@ public class HealthMetricController {
         User user = null;
         String metricType = null;
         Double value = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing Edit Operation------------");
 
@@ -197,16 +189,10 @@ public class HealthMetricController {
             System.out.println("Enter Value : ");
             value = sc.nextDouble();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
 
         HealthMetric healthMetrics = new HealthMetric(id, user, metricType, value, datelogged);

@@ -4,8 +4,12 @@
  */
 package com.rasmijati.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -13,7 +17,30 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateUtil {
 
-    String s;
+    public Date parseStringToDateOnly(String userInput) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date datelogged = removeTime(dateFormat.parse(userInput));
+            return datelogged;
+        } catch (ParseException e) {
+            System.out.println("Error parsing the date. Make sure to use the correct format (yyyy-MM-dd).");
+            System.out.println("Invalid date format.");
+            return null;
+        }
+    }
+
+    private static Date removeTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        // Set time components to zero
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTime();
+    }
 
     public LocalDate parseStringToDate(String userInput) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -23,7 +50,7 @@ public class DateUtil {
         }
         return null;
     }
-    
+
     // Method to validate the date format using a regular expression
     private static boolean isValidDate(String date, String pattern) {
         String regex = "\\d{4}-\\d{2}-\\d{2}";
