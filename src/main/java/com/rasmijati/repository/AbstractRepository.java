@@ -7,6 +7,7 @@ package com.rasmijati.repository;
 import com.rasmijati.model.IEntity;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AbstractRepository<T extends IEntity> {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FitnessTracker", "root", "Root@1234");
             return con;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Connection failed!!");
         }
         return null;
@@ -44,10 +45,6 @@ public class AbstractRepository<T extends IEntity> {
 
     public T ShowById(Long id) {
         for (T t : list) {
-//IEntity interface with method for id is created for this purpose (t.getId()....) . 
-//Through this we can access all the child class that implement IEntity and 
-//the code from this class can be used multiple times by all 
-//the child class without need to write the same performing code multiple times
             if (t.getId().equals(id)) {
                 return t;
             }

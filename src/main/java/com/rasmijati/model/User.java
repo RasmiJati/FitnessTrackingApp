@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author rasmi
  */
-public class User implements IEntity{
+public class User implements IEntity {
 
     private Long id;
     private String name;
@@ -22,13 +22,17 @@ public class User implements IEntity{
     public User() {
     }
 
-    public User(Long id, String name,  String email, String password, String birthdate, String gender) {
+    public User(Long id, String name, String email, String password, String birthdate, String gender) {
         this.id = id;
-        this.name = name;       
+        this.name = name;
         this.email = email;
         this.password = password;
         this.birthdate = birthdate;
         this.gender = gender;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -129,10 +133,9 @@ public class User implements IEntity{
         }
         return Objects.equals(this.birthdate, other.birthdate);
     }
-    
 
     @Override
     public String toString() {
-        return "id: " + id + " name: " + name + " email: " + email + " password: " + password +  " DOB: " + birthdate + " Gender: " + gender;
+        return "id: " + id + " name: " + name + " email: " + email + " password: " + password + " DOB: " + birthdate + " Gender: " + gender;
     }
 }
