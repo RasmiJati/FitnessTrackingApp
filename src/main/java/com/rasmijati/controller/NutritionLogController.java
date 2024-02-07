@@ -9,8 +9,9 @@ import com.rasmijati.model.User;
 import com.rasmijati.repository.NutritionLogRepository;
 import com.rasmijati.repository.UserRepository;
 import com.rasmijati.util.DateUtil;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class NutritionLogController {
 
     private static UserRepository userRepository;
     private static NutritionLogRepository nutritionalLogRepository;
-    private static DateUtil dateUtil = new DateUtil();
+    private static DateUtil dateUtil;
 
     public void Options(NutritionLogRepository nutritionalLogRepository, UserRepository userRepository) {
         this.nutritionalLogRepository = nutritionalLogRepository;
@@ -73,7 +74,8 @@ public class NutritionLogController {
         List<String> foodItems = new ArrayList<>();
         List<Double> portionSizes = new ArrayList<>();
         String CaloriesConsumed = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
+        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing create operation---------------");
 
@@ -117,29 +119,29 @@ public class NutritionLogController {
             foodItems.add(userInput);
         }
 
-        System.out.println("Enter Portion size (enter 0 to finish ) : ");
+        System.out.println("Enter Portion size (enter 0.0 to finish ) : ");
         while (true) {
-            Double userInput = sc.nextDouble();
+            try {
+                Double userInput = sc.nextDouble();
 
-            if (userInput.equals(0.0)) {
-                break;
+                if (userInput.equals(0.0)) {
+                    break;
+                }
+                portionSizes.add(userInput);
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                sc.next();  // Consume the invalid input to avoid an infinite loop
             }
-            portionSizes.add(userInput);
         }
+
         while (CaloriesConsumed == null || CaloriesConsumed.isEmpty()) {
             System.out.println("Enter calories Consumed : ");
             CaloriesConsumed = sc.next();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
         NutritionLog nutritionLog = new NutritionLog(id, user, mealType, foodItems, portionSizes, CaloriesConsumed, datelogged);
         nutritionalLogRepository.Create(nutritionLog);
@@ -175,7 +177,7 @@ public class NutritionLogController {
         List<String> foodItems = new ArrayList<>();
         List<Double> portionSizes = new ArrayList<>();
         String CaloriesConsumed = null;
-        LocalDate datelogged = null;
+        Date datelogged = null;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("-----------Performing edit operation---------------");
@@ -222,29 +224,29 @@ public class NutritionLogController {
 
             foodItems.add(userInput);
         }
-        System.out.println("Enter Portion size (enter 0 to finish ) : ");
+        System.out.println("Enter Portion size (enter 0.0 to finish ) : ");
         while (true) {
-            Double userInput = sc.nextDouble();
+            try {
+                Double userInput = sc.nextDouble();
 
-            if (userInput.equals(0.0)) {
-                break;
+                if (userInput.equals(0.0)) {
+                    break;
+                }
+                portionSizes.add(userInput);
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                sc.next();  // Consume the invalid input to avoid an infinite loop
             }
-            portionSizes.add(userInput);
         }
+
         while (CaloriesConsumed == null || CaloriesConsumed.isEmpty()) {
             System.out.println("Enter calories Consumed : ");
             CaloriesConsumed = sc.next();
         }
-        while (true) {
+        while (datelogged == null) {
             System.out.println("Enter Logged Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            datelogged = dateUtil.parseStringToDate(dateStr);
-
-            if (datelogged != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            datelogged = dateUtil.parseStringToDateOnly(dateStr);
         }
         NutritionLog nutritionslog = new NutritionLog(id, user, mealType, foodItems, portionSizes, CaloriesConsumed, datelogged);
         nutritionalLogRepository.Edit(nutritionslog);

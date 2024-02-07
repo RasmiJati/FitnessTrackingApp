@@ -4,7 +4,7 @@
  */
 package com.rasmijati.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -18,12 +18,12 @@ public class ActivityGoal implements IEntity {
     private String goalType;
     private Double targetValue;
     private Double currentValue;
-    private LocalDate date;
+    private Date date;
 
     public ActivityGoal() {
     }
 
-    public ActivityGoal(Long id, User user, String goalType, Double targetValue, Double currentValue, LocalDate date) {
+    public ActivityGoal(Long id, User user, String goalType, Double targetValue, Double currentValue, Date date) {
         this.id = id;
         this.user = user;
         this.goalType = goalType;
@@ -74,11 +74,11 @@ public class ActivityGoal implements IEntity {
         this.currentValue = currentValue;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

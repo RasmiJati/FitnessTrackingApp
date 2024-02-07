@@ -9,7 +9,7 @@ import com.rasmijati.model.User;
 import com.rasmijati.repository.ActivityGoalRepository;
 import com.rasmijati.repository.UserRepository;
 import com.rasmijati.util.DateUtil;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class ActivityGoalController {
 
     private static UserRepository userRepository;
     private static ActivityGoalRepository activityGoalRepository;
-    private static DateUtil dateUtil = new DateUtil();
+    private static DateUtil dateUtil;
 
     public void Options(ActivityGoalRepository activityGoalRepository, UserRepository userRepository) {
         this.activityGoalRepository = activityGoalRepository;
@@ -71,7 +71,8 @@ public class ActivityGoalController {
         String goalType = null;
         Double targetValue = null;
         Double currentValue = null;
-        LocalDate date = null;
+        Date date = null;
+        dateUtil = new DateUtil();
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Performing create operation---------------");
 
@@ -112,16 +113,10 @@ public class ActivityGoalController {
             System.out.println("Enter current value : ");
             currentValue = sc.nextDouble();
         }
-        while (true) {
+        while (date == null) {
             System.out.println("Enter Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            date = dateUtil.parseStringToDate(dateStr);
-
-            if (date != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            date = dateUtil.parseStringToDateOnly(dateStr);
         }
         ActivityGoal activityGoal = new ActivityGoal(id, user, goalType, targetValue, currentValue, date);
         activityGoalRepository.Create(activityGoal);
@@ -156,7 +151,7 @@ public class ActivityGoalController {
         String goalType = null;
         Double targetValue = null;
         Double currentValue = null;
-        LocalDate date = null;
+        Date date = null;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("-----------Performing edit operation---------------");
@@ -201,16 +196,10 @@ public class ActivityGoalController {
             System.out.println("Enter current value : ");
             currentValue = sc.nextDouble();
         }
-        while (true) {
+        while (date == null) {
             System.out.println("Enter Date (yyyy-MM-dd): ");
             String dateStr = sc.next();
-            date = dateUtil.parseStringToDate(dateStr);
-
-            if (date != null) {
-                break;
-            } else {
-                System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            }
+            date = dateUtil.parseStringToDateOnly(dateStr);
         }
         ActivityGoal activityGoal = new ActivityGoal(id, user, goalType, targetValue, currentValue, date);
         activityGoalRepository.Edit(activityGoal);

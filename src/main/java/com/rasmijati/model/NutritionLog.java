@@ -4,7 +4,7 @@
  */
 package com.rasmijati.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,12 +19,12 @@ public class NutritionLog implements IEntity{
     private List<String> foodItems;
     private List<Double> portionSizes;
    private String caloriesConsumed;
-   private LocalDate dateLogged;
+   private Date dateLogged;
 
     public NutritionLog() {
     }
 
-    public NutritionLog(Long id, User user, String mealType, List<String> foodItems, List<Double> portionSizes, String caloriesConsumed, LocalDate dateLogged) {
+    public NutritionLog(Long id, User user, String mealType, List<String> foodItems, List<Double> portionSizes, String caloriesConsumed, Date dateLogged) {
         this.id = id;
         this.user = user;
         this.mealType = mealType;
@@ -34,10 +34,12 @@ public class NutritionLog implements IEntity{
         this.dateLogged = dateLogged;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -82,11 +84,11 @@ public class NutritionLog implements IEntity{
         this.caloriesConsumed = caloriesConsumed;
     }
 
-    public LocalDate getDateLogged() {
+    public Date getDateLogged() {
         return dateLogged;
     }
 
-    public void setDateLogged(LocalDate dateLogged) {
+    public void setDateLogged(Date dateLogged) {
         this.dateLogged = dateLogged;
     }
 
