@@ -6,8 +6,6 @@ package com.rasmijati.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,21 +38,5 @@ public class DateUtil {
         calendar.set(Calendar.MILLISECOND, 0);
 
         return calendar.getTime();
-    }
-
-    public LocalDate parseStringToDate(String userInput) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        if (isValidDate(userInput, "yyyy-MM-dd")) {
-            LocalDate date = LocalDate.parse(userInput, formatter);
-            return date;
-        }
-        return null;
-    }
-
-    // Method to validate the date format using a regular expression
-    private static boolean isValidDate(String date, String pattern) {
-        String regex = "\\d{4}-\\d{2}-\\d{2}";
-
-        return date.matches(regex) && date.length() == pattern.length();
     }
 }
