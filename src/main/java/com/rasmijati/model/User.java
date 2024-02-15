@@ -5,18 +5,34 @@
 package com.rasmijati.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author rasmi
  */
+@Entity
+@Table(name = "user")
 public class User implements IEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
+    @Column(name = "email", nullable = false, unique = true, length = 50)
     private String email;
+    @Column(name = "password", nullable = false, length = 50)
     private String password;
+    @Column(name = "birthdate", nullable = false, length = 50)
     private String birthdate;
+    @Column(name = "gender", nullable = false, length = 50)
     private String gender;
 
     public User() {
