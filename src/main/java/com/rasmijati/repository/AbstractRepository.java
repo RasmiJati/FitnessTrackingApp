@@ -5,57 +5,49 @@
 package com.rasmijati.repository;
 
 import com.rasmijati.model.IEntity;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import com.rasmijati.model.IRepository;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author rasmi
  * @param <T>
  */
-public class AbstractRepository<T extends IEntity> {
+public abstract class AbstractRepository<T extends IEntity> implements IRepository<T> {
 
-    private List<T> list;
+    protected abstract EntityManager getEntityManager();
+    private Class<T> entityClass;
 
-    public Connection connectDB() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FitnessTracker", "root", "Root@1234");
-            return con;
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Connection failed!!");
-        }
-        return null;
+    public AbstractRepository(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 
-    public AbstractRepository() {
-        list = new ArrayList();
-    }
-
+    @Override
     public void Create(T t) {
-        this.list.add(t);
+        getEntityManager().persist(t);
+        getEntityManager().flush();
     }
 
+    @Override
     public List<T> Show() {
-        return list;
+        return getEntityManager().createQuery("select  t from " + entityClass.getName() + " t ").getResultList();
     }
 
+    @Override
     public T ShowById(Long id) {
-        for (T t : list) {
-            if (t.getId().equals(id)) {
-                return t;
-            }
-        }
-        return null;
+        return getEntityManager().find(entityClass, id);
     }
 
+    @Override
     public void Delete(T t) {
-        this.list.remove(t);
+        getEntityManager().remove(ShowById(t.getId()));
+        getEntityManager().flush();
     }
 
+    @Override
     public void Edit(T t) {
+        getEntityManager().merge(t);
+        getEntityManager().flush();
     }
 }

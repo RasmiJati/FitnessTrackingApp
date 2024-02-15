@@ -5,16 +5,16 @@
 package com.rasmijati.model;
 
 import java.util.List;
-
+                                                                                                                                                                                                                                                                                                                                                                                            
 /**
  *
  * @author rasmi
  * @param <T>
  */
 public interface IRepository<T> {
-    public void create(T e);
-    public List<T> findAll();
-    public T findById(Long id);
-    public void delete(T e);
-    public void edit(T e);
+    public void Create(T e);
+    public List<T> Show();
+    public T ShowById(Long id);
+    public void Delete(T e);
+    public void Edit(T e);                                                                                                                                                                                                                                                                                                  
 }
