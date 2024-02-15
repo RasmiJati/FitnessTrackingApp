@@ -26,10 +26,10 @@
                           wrap-jdbc-objects="false">
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="3306"/>
-        <property name="databaseName" value="FitnessTracker"/>
+        <property name="databaseName" value="FitnessTrackerApp"/>
         <property name="User" value="root"/>
         <property name="Password" value="Root@1234"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/FitnessTracker?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/FitnessTrackerApp?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java/jboss/fitnesstracker" object-type="user" pool-name="fitnesstrackerpool"/>
