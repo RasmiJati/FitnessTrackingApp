@@ -4,6 +4,7 @@
  */
 package com.rasmijati.model;
 
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,15 +31,15 @@ public class User implements IEntity {
     private String email;
     @Column(name = "password", nullable = false, length = 50)
     private String password;
-    @Column(name = "birthdate", nullable = false, length = 50)
-    private String birthdate;
+    @Column(name = "birth_date", nullable = false)
+    private Date birthdate;
     @Column(name = "gender", nullable = false, length = 50)
     private String gender;
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, String birthdate, String gender) {
+    public User(Long id, String name, String email, String password, Date birthdate, String gender) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -68,7 +69,7 @@ public class User implements IEntity {
         return email;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
@@ -93,7 +94,7 @@ public class User implements IEntity {
         this.email = email;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 

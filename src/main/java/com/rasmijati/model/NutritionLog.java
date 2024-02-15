@@ -7,19 +7,40 @@ package com.rasmijati.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author rasmi
  */
-public class NutritionLog implements IEntity{
+@Entity
+@Table(name = "nutritional_log")
+public class NutritionLog implements IEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @Column(name = "meal_type", nullable = false , length = 50)
     private String mealType;
+    @Column(name = "food_items", nullable = false , length = 200)
     private List<String> foodItems;
+    @Column(name = "portion_size" , nullable = false)
     private List<Double> portionSizes;
-   private String caloriesConsumed;
-   private Date dateLogged;
+    @Column(name = "calories_consumed" , nullable = false, length = 50)
+    private String caloriesConsumed;
+    @Column(name = "logged_date" , nullable = false)
+    private Date dateLogged;
 
     public NutritionLog() {
     }
@@ -119,7 +140,7 @@ public class NutritionLog implements IEntity{
         if (this == obj) {
             return true;
         }
-       if (!(obj instanceof NutritionLog)) {
+        if (!(obj instanceof NutritionLog)) {
             return false;
         }
         final NutritionLog other = (NutritionLog) obj;
@@ -144,11 +165,9 @@ public class NutritionLog implements IEntity{
         return Objects.equals(this.dateLogged, other.dateLogged);
     }
 
-    
-    
     @Override
     public String toString() {
         return "NutritionLog{" + "id=" + id + ", user=" + user + ", mealType=" + mealType + ", foodItems=" + foodItems + ", portionSizes=" + portionSizes + ", caloriesConsumed=" + caloriesConsumed + ", dateLogged=" + dateLogged + '}';
     }
-   
+
 }

@@ -6,18 +6,36 @@ package com.rasmijati.model;
 
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author rasmi
  */
+@Entity
+@Table(name = "activity_goal")
 public class ActivityGoal implements IEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id" , nullable = false)
     private Long id;
+    @ManyToOne
+    @Column(name = "user_id" , nullable = false)
     private User user;
+    @Column(name = "goal_type" , nullable = false , length = 50)
     private String goalType;
+    @Column(name = "target_value" , nullable = false)
     private Double targetValue;
+    @Column(name = "current_value" , nullable = false)
     private Double currentValue;
+    @Column(name = "date" , nullable = false)
     private Date date;
 
     public ActivityGoal() {

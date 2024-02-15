@@ -6,19 +6,39 @@ package com.rasmijati.model;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author rasmi
  */
-public class UserHealthProfile implements IEntity{
+@Entity
+@Table(name = "health_profile")
+public class UserHealthProfile implements IEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @Column(name = "weight", nullable = false)
     private Double weight;
+    @Column(name = "height", nullable = false)
     private Double height;
+    @Column(name = "bmi", nullable = false)
     private Double bmi;
+    @Column(name = "bp", nullable = false, length = 50)
     private String bp;
+    @Column(name = "heart_rate", nullable = false)
     private BigDecimal heartrate;
 
     public UserHealthProfile() {
@@ -144,7 +164,6 @@ public class UserHealthProfile implements IEntity{
         return Objects.equals(this.heartrate, other.heartrate);
     }
 
-    
     @Override
     public String toString() {
         return "UserHealthProfile{" + "id=" + id + ", user=" + user + ", weight=" + weight + ", height=" + height + ", bmi=" + bmi + ", bp=" + bp + ", heartrate=" + heartrate + '}';

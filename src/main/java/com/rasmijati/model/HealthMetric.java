@@ -6,17 +6,35 @@ package com.rasmijati.model;
 
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author rasmi
  */
+@Entity
+@Table(name = "health_metric")
 public class HealthMetric implements IEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @Column(name = "metric_type", nullable = false, length = 50)
     private String MetricType;
+    @Column(name = "metric_value", nullable = false)
     private Double value;
+    @Column(name = "logged_date", nullable = false)
     private Date datelogged;
 
     public HealthMetric() {
